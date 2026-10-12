@@ -1,0 +1,16 @@
+{
+  "name": "staff-turgeau-en-action",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site institutionnel de Staff Turgeau en Action",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "preview": "npx wrangler pages dev dist",
+    "deploy": "npx wrangler pages deploy dist --project-name=staffturgeau"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
+
