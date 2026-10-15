@@ -138,6 +138,30 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .un-mark small { max-width: 190px; margin: 20px auto 0; font-size: .7rem; line-height: 1.4; text-transform: uppercase; letter-spacing: .13em; }
 .un-grid > div:last-child p:not(.eyebrow) { max-width: 760px; color: #5f6b7e; }
 
+.event-gallery { color: #fff; background: var(--navy); overflow: hidden; }
+.event-head h2 { margin: 0; font-family: var(--serif); font-size: clamp(2.7rem, 5vw, 5.3rem); font-weight: 500; letter-spacing: -.045em; line-height: .98; }
+.event-head > p { color: rgba(255,255,255,.68); }
+.flyer-showcase { max-width: 980px; margin-inline: auto; }
+.flyer-stage { position: relative; height: clamp(570px, 70vw, 820px); overflow: hidden; border: 1px solid rgba(255,255,255,.13); border-radius: 28px; outline: none; background: #020a1c; box-shadow: 0 30px 90px rgba(0,0,0,.34); }
+.flyer-stage:focus-visible { box-shadow: 0 0 0 4px #8cafff, 0 30px 90px rgba(0,0,0,.34); }
+.flyer-slide { width: 100%; height: 100%; margin: 0; display: none; grid-template-rows: minmax(0, 1fr) auto; }
+.flyer-slide.is-active { display: grid; }
+.flyer-slide img { width: 100%; height: 100%; min-height: 0; object-fit: contain; }
+.flyer-slide figcaption { min-height: 68px; display: flex; align-items: center; justify-content: center; padding: 17px 90px; color: rgba(255,255,255,.82); background: #0a1c40; text-align: center; font-family: var(--serif); font-size: 1.05rem; line-height: 1.35; }
+.slider-control { position: absolute; z-index: 3; top: 50%; width: 54px; height: 54px; display: grid; place-items: center; padding: 0; border: 1px solid rgba(255,255,255,.5); border-radius: 50%; color: #fff; background: rgba(3,16,43,.78); backdrop-filter: blur(8px); cursor: pointer; transform: translateY(-50%); transition: background .2s ease, transform .2s ease; }
+.slider-control:hover, .slider-control:focus-visible { background: var(--red); transform: translateY(-50%) scale(1.06); }
+.slider-control span { font-family: var(--serif); font-size: 2.25rem; line-height: .8; transform: translateY(-2px); }
+.slider-prev { left: 22px; }
+.slider-next { right: 22px; }
+.slider-toolbar { min-height: 58px; display: grid; grid-template-columns: 90px 1fr 90px; align-items: center; gap: 18px; padding-top: 20px; }
+.slider-status { margin: 0; color: rgba(255,255,255,.7); font-size: .82rem; font-weight: 850; letter-spacing: .12em; }
+.slider-dots { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.slider-dot { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 50%; background: rgba(255,255,255,.3); cursor: pointer; transition: width .2s ease, border-radius .2s ease, background .2s ease; }
+.slider-dot.is-active { width: 28px; border-radius: 999px; background: #ff6177; }
+.slider-dot:focus-visible { outline: 3px solid #8cafff; outline-offset: 4px; }
+.slider-toggle { justify-self: end; padding: 7px 13px; border: 1px solid rgba(255,255,255,.28); border-radius: 999px; color: #fff; background: transparent; font: inherit; font-size: .74rem; font-weight: 800; cursor: pointer; }
+.slider-toggle:hover, .slider-toggle:focus-visible { border-color: #fff; background: rgba(255,255,255,.1); }
+
 .team { background: #f7f9fc; }
 .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .member-card { overflow: hidden; border-radius: var(--radius); background: #fff; box-shadow: 0 10px 30px rgba(8,22,47,.06); }
@@ -218,6 +242,13 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .limits > div { grid-template-columns: 1fr; }
   .limits summary span { display: none; }
   .un-mark { width: min(270px, 80vw); }
+  .flyer-stage { height: clamp(500px, 145vw, 680px); border-radius: 18px; }
+  .flyer-slide figcaption { min-height: 84px; padding: 15px 64px; font-size: .93rem; }
+  .slider-control { width: 44px; height: 44px; }
+  .slider-prev { left: 10px; }
+  .slider-next { right: 10px; }
+  .slider-toolbar { grid-template-columns: 54px 1fr 64px; gap: 10px; }
+  .slider-toggle { padding-inline: 10px; }
   .join-card { width: 100%; border-radius: 0; }
   .join-statement { display: none; }
   .footer-grid { grid-template-columns: 1fr; }
