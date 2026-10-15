@@ -159,7 +159,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .join-statement strong { font-family: var(--serif); font-size: 1.22rem; }
 
 .site-footer { padding: 76px 0 28px; color: rgba(255,255,255,.72); background: #03102b; }
-.footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr .7fr; gap: 50px; }
+.footer-grid { display: grid; grid-template-columns: 1.5fr .85fr .85fr .75fr 1.1fr; gap: 34px; }
 .footer-brand { display: flex; gap: 18px; align-items: center; }
 .footer-brand img { border-radius: 50%; background: #fff; }
 .footer-brand strong { color: #fff; font-family: var(--serif); font-size: 1.3rem; }
@@ -168,6 +168,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .site-footer p, .site-footer address { margin: 0; font-size: .88rem; font-style: normal; }
 .site-footer a { text-decoration: none; }
 .site-footer a:hover { color: #fff; }
+.footer-links { display: grid; gap: 7px; font-size: .88rem; }
+.transparency-badge { width: fit-content; max-width: min(760px, calc(100% - 40px)); margin-top: 46px; padding: 12px 16px; border: 1px solid rgba(255,255,255,.18); border-left: 3px solid var(--red); border-radius: 10px; color: rgba(255,255,255,.68); background: rgba(255,255,255,.045); font-size: .74rem; line-height: 1.55; }
 .footer-bottom { display: flex; justify-content: space-between; gap: 30px; margin-top: 64px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.13); }
 .footer-bottom p { font-size: .72rem; }
 
@@ -186,8 +188,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .team-grid { grid-template-columns: repeat(2, 1fr); }
   .method-grid { grid-template-columns: 42% 58%; }
   .method-copy { padding: 70px 44px; }
-  .footer-grid { grid-template-columns: 1.5fr 1fr 1fr; }
-  .footer-grid > div:last-child { display: none; }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 720px) {
   .container { width: min(100% - 28px, 1180px); }
@@ -220,7 +221,6 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .join-card { width: 100%; border-radius: 0; }
   .join-statement { display: none; }
   .footer-grid { grid-template-columns: 1fr; }
-  .footer-grid > div:last-child { display: block; }
   .footer-bottom { flex-direction: column; }
 }
 @media (prefers-reduced-motion: reduce) {
