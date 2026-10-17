@@ -157,7 +157,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .flyer-slide { width: 100%; height: 100%; margin: 0; display: none; grid-template-rows: minmax(0, 1fr) auto; }
 .flyer-slide.is-active { display: grid; }
 .flyer-slide img { width: 100%; height: 100%; min-height: 0; object-fit: contain; }
-.flyer-slide figcaption { min-height: 68px; display: flex; align-items: center; justify-content: center; padding: 17px 90px; color: rgba(255,255,255,.82); background: #0a1c40; text-align: center; font-family: var(--serif); font-size: 1.05rem; line-height: 1.35; }
+.flyer-slide figcaption { min-height: 88px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; padding: 14px 90px 16px; color: rgba(255,255,255,.82); background: #0a1c40; text-align: center; font-family: var(--serif); font-size: 1.05rem; line-height: 1.35; }
+.flyer-slide figcaption .flyer-intro { color: #ff9cac; font-family: var(--sans); font-size: .67rem; font-weight: 900; letter-spacing: .15em; line-height: 1.3; text-transform: uppercase; }
+.flyer-slide figcaption strong { font-weight: 600; }
 .slider-control { position: absolute; z-index: 3; top: 50%; width: 54px; height: 54px; display: grid; place-items: center; padding: 0; border: 1px solid rgba(255,255,255,.5); border-radius: 50%; color: #fff; background: rgba(3,16,43,.78); backdrop-filter: blur(8px); cursor: pointer; transform: translateY(-50%); transition: background .2s ease, transform .2s ease; }
 .slider-control:hover, .slider-control:focus-visible { background: var(--red); transform: translateY(-50%) scale(1.06); }
 .slider-control span { font-family: var(--serif); font-size: 2.25rem; line-height: .8; transform: translateY(-2px); }
@@ -304,7 +306,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .limits summary span { display: none; }
   .un-mark { width: min(270px, 80vw); }
   .flyer-stage { height: clamp(500px, 145vw, 680px); border-radius: 18px; }
-  .flyer-slide figcaption { min-height: 84px; padding: 15px 64px; font-size: .93rem; }
+  .flyer-slide figcaption { min-height: 102px; padding: 13px 58px 15px; font-size: .93rem; }
   .slider-control { width: 44px; height: 44px; }
   .slider-prev { left: 10px; }
   .slider-next { right: 10px; }

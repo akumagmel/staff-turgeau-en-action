@@ -36,13 +36,27 @@ const slider = document.querySelector("[data-slider]");
 
 if (slider) {
   const track = slider.querySelector("[data-slider-track]");
-  const slides = [...slider.querySelectorAll("[data-slide]")];
   const previousButton = slider.querySelector("[data-slider-prev]");
   const nextButton = slider.querySelector("[data-slider-next]");
   const toggleButton = slider.querySelector("[data-slider-toggle]");
   const currentLabel = slider.querySelector("[data-slider-current]");
+  const totalLabel = slider.querySelector("[data-slider-total]");
   const dotsContainer = slider.querySelector("[data-slider-dots]");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const slides = [...slider.querySelectorAll("[data-slide]")];
+
+  for (let index = slides.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [slides[index], slides[randomIndex]] = [slides[randomIndex], slides[index]];
+  }
+
+  slides.forEach((slide, index) => {
+    track?.insertBefore(slide, previousButton);
+    slide.setAttribute("aria-label", `${index + 1} sur ${slides.length}`);
+  });
+
+  if (totalLabel) totalLabel.textContent = String(slides.length);
+
   let currentIndex = 0;
   let timer;
   let autoPlay = !reducedMotion.matches;
