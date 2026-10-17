@@ -160,6 +160,10 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .flyer-slide figcaption { min-height: 88px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; padding: 14px 90px 16px; color: rgba(255,255,255,.82); background: #0a1c40; text-align: center; font-family: var(--serif); font-size: 1.05rem; line-height: 1.35; }
 .flyer-slide figcaption .flyer-intro { color: #ff9cac; font-family: var(--sans); font-size: .67rem; font-weight: 900; letter-spacing: .15em; line-height: 1.3; text-transform: uppercase; }
 .flyer-slide figcaption strong { font-weight: 600; }
+.flyer-slide figcaption.flyer-details { min-height: 174px; gap: 4px; padding-block: 12px; }
+.flyer-details .flyer-meta { color: rgba(255,255,255,.76); font-family: var(--sans); font-size: .73rem; line-height: 1.35; }
+.flyer-details .flyer-meta b { color: #fff; }
+.flyer-details .flyer-meta a { color: #fff; font-weight: 800; text-decoration-color: #ff9cac; text-underline-offset: 3px; }
 .slider-control { position: absolute; z-index: 3; top: 50%; width: 54px; height: 54px; display: grid; place-items: center; padding: 0; border: 1px solid rgba(255,255,255,.5); border-radius: 50%; color: #fff; background: rgba(3,16,43,.78); backdrop-filter: blur(8px); cursor: pointer; transform: translateY(-50%); transition: background .2s ease, transform .2s ease; }
 .slider-control:hover, .slider-control:focus-visible { background: var(--red); transform: translateY(-50%) scale(1.06); }
 .slider-control span { font-family: var(--serif); font-size: 2.25rem; line-height: .8; transform: translateY(-2px); }
@@ -307,6 +311,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .un-mark { width: min(270px, 80vw); }
   .flyer-stage { height: clamp(500px, 145vw, 680px); border-radius: 18px; }
   .flyer-slide figcaption { min-height: 102px; padding: 13px 58px 15px; font-size: .93rem; }
+  .flyer-slide figcaption.flyer-details { min-height: 220px; padding: 12px 50px 14px; }
+  .flyer-details .flyer-meta { font-size: .68rem; }
   .slider-control { width: 44px; height: 44px; }
   .slider-prev { left: 10px; }
   .slider-next { right: 10px; }
