@@ -173,6 +173,11 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .slider-toggle:hover, .slider-toggle:focus-visible { border-color: #fff; background: rgba(255,255,255,.1); }
 
 .team { background: #f7f9fc; }
+.team .section-head { margin-bottom: 30px; }
+.member-privacy-note { display: grid; grid-template-columns: 38px 1fr; gap: 15px; align-items: start; margin-bottom: 38px; padding: 17px 20px; border: 1px solid rgba(13,71,161,.14); border-left: 3px solid var(--blue); border-radius: 12px; background: rgba(13,71,161,.045); }
+.member-privacy-note > span { display: grid; place-items: center; width: 30px; height: 30px; color: #fff; background: var(--blue); border-radius: 50%; font-family: var(--serif); font-weight: 700; }
+.member-privacy-note p { margin: 2px 0 0; color: #5f6b7e; font-size: .84rem; line-height: 1.65; }
+.member-privacy-note strong { color: var(--ink); }
 .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .member-card { overflow: hidden; border-radius: var(--radius); background: #fff; box-shadow: 0 10px 30px rgba(8,22,47,.06); }
 .member-card img { width: 100%; aspect-ratio: 4/4.25; object-fit: cover; object-position: center 20%; background: var(--mist); filter: saturate(.94); transition: transform .4s ease, filter .4s ease; }
@@ -267,6 +272,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .authority-grid .constitutional-authority { grid-template-columns: 1fr; min-height: 0; padding: 34px 24px; }
   .constitutional-badge { display: flex; align-items: center; gap: 22px; padding: 0 0 26px; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.18); }
   .constitutional-badge .authority-icon { flex: 0 0 auto; width: 64px; height: 64px; margin: 0; font-size: 1.7rem; }
+  .member-privacy-note { grid-template-columns: 1fr; }
   .subpage-main { padding: 125px 0 70px; }
   .subpage-card { border-radius: 20px; }
   .subpage-footer .container { flex-direction: column; }
