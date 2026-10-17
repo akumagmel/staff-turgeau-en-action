@@ -52,7 +52,7 @@ if (slider) {
     const dot = document.createElement("button");
     dot.className = "slider-dot";
     dot.type = "button";
-    dot.setAttribute("aria-label", `Afficher l’affiche ${index + 1}`);
+    dot.setAttribute("aria-label", `Afficher l’information ${index + 1}`);
     dot.addEventListener("click", () => showSlide(index, true));
     dotsContainer?.append(dot);
     return dot;

@@ -209,6 +209,26 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .subpage-card .subpage-lede { max-width: 700px; margin: 30px 0 0; color: #5f6b7e; font-size: 1.08rem; }
 .subpage-status { width: fit-content; margin: 34px 0 0; padding: 10px 14px; color: var(--blue); border: 1px solid rgba(13,71,161,.18); border-radius: 999px; background: rgba(13,71,161,.06); font-size: .72rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
 .subpage-actions { margin-top: 32px; }
+.policy-card { max-width: 1000px; }
+.policy-intro { padding-bottom: 46px; border-bottom: 1px solid var(--line); }
+.policy-card section { padding: 42px 0; border-bottom: 1px solid var(--line); }
+.policy-card section:last-child { padding-bottom: 0; border-bottom: 0; }
+.policy-card h2 { margin: 0 0 18px; color: var(--navy); font-family: var(--serif); font-size: clamp(1.65rem, 3vw, 2.35rem); line-height: 1.12; }
+.policy-card section > p { max-width: 780px; margin: 0 0 16px; color: #526079; line-height: 1.75; }
+.policy-card section > p:last-child { margin-bottom: 0; }
+.policy-card section a:not(.button) { color: var(--blue); font-weight: 750; }
+.policy-notice { margin: 38px 0 4px; padding: 22px 24px; border: 1px solid rgba(13,71,161,.16); border-left: 4px solid var(--blue); border-radius: 12px; color: #526079; background: rgba(13,71,161,.045); line-height: 1.65; }
+.policy-notice strong { color: var(--ink); }
+.policy-list { display: grid; gap: 12px; max-width: 800px; margin: 20px 0 0; padding: 0; list-style: none; }
+.policy-list li { position: relative; padding: 0 0 12px 28px; color: #526079; border-bottom: 1px solid rgba(13,71,161,.09); line-height: 1.65; }
+.policy-list li:last-child { border-bottom: 0; }
+.policy-list li::before { content: "✓"; position: absolute; left: 0; color: var(--red); font-weight: 900; }
+.policy-steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 22px 0 0; padding: 0; list-style: none; }
+.policy-steps li { display: grid; grid-template-columns: 44px 1fr; gap: 16px; padding: 22px; border: 1px solid var(--line); border-radius: 14px; background: var(--paper); }
+.policy-steps li > span { display: grid; place-items: center; width: 40px; height: 40px; color: #fff; background: var(--blue); border-radius: 50%; font-family: var(--serif); font-weight: 700; }
+.policy-steps strong { color: var(--navy); font-family: var(--serif); font-size: 1.15rem; }
+.policy-steps p { margin: 6px 0 0; color: #5f6b7e; font-size: .9rem; line-height: 1.55; }
+.policy-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; }
 .subpage-footer { padding: 28px 0; color: rgba(255,255,255,.65); background: var(--navy); font-size: .78rem; }
 .subpage-footer .container { display: flex; justify-content: space-between; gap: 20px; }
 
@@ -275,6 +295,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .member-privacy-note { grid-template-columns: 1fr; }
   .subpage-main { padding: 125px 0 70px; }
   .subpage-card { border-radius: 20px; }
+  .policy-intro { padding-bottom: 34px; }
+  .policy-card section { padding: 34px 0; }
+  .policy-steps { grid-template-columns: 1fr; }
   .subpage-footer .container { flex-direction: column; }
   .capacity-panel { padding: 34px 24px; }
   .limits > div { grid-template-columns: 1fr; }
