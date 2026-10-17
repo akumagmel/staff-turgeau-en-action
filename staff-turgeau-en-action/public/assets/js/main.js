@@ -157,63 +157,128 @@ if (slider) {
   startTimer();
 }
 
-const fieldGallery = document.querySelector("[data-field-gallery]");
-const fieldLightbox = document.querySelector("[data-field-lightbox]");
+const fieldSlider = document.querySelector("[data-field-slider]");
 
-if (fieldGallery && fieldLightbox) {
-  const cards = shuffleItems([...fieldGallery.querySelectorAll("[data-field-photo]")]);
-  cards.forEach((card) => fieldGallery.append(card));
+if (fieldSlider) {
+  const track = fieldSlider.querySelector("[data-field-track]");
+  const previousButton = fieldSlider.querySelector("[data-field-prev]");
+  const nextButton = fieldSlider.querySelector("[data-field-next]");
+  const toggleButton = fieldSlider.querySelector("[data-field-toggle]");
+  const currentLabel = fieldSlider.querySelector("[data-field-current]");
+  const totalLabel = fieldSlider.querySelector("[data-field-total]");
+  const thumbnailsContainer = fieldSlider.querySelector("[data-field-thumbnails]");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const slides = shuffleItems([...fieldSlider.querySelectorAll("[data-field-slide]")]);
 
-  const openButtons = cards.map((card) => card.querySelector("[data-field-open]"));
-  const lightboxImage = fieldLightbox.querySelector("[data-field-lightbox-image]");
-  const lightboxCaption = fieldLightbox.querySelector("[data-field-lightbox-caption]");
-  const closeButton = fieldLightbox.querySelector("[data-field-close]");
-  const previousButton = fieldLightbox.querySelector("[data-field-prev]");
-  const nextButton = fieldLightbox.querySelector("[data-field-next]");
+  slides.forEach((slide, index) => {
+    track?.insertBefore(slide, track.querySelector(".field-count"));
+    slide.setAttribute("aria-label", `${index + 1} sur ${slides.length}`);
+  });
+
+  if (totalLabel) totalLabel.textContent = String(slides.length);
+
   let currentIndex = 0;
-  let returnFocus;
+  let timer;
+  let autoPlay = !reducedMotion.matches;
+  let isInteracting = false;
 
-  const showFieldPhoto = (nextIndex) => {
-    currentIndex = (nextIndex + cards.length) % cards.length;
-    const card = cards[currentIndex];
-    const sourceImage = card.querySelector("img");
-    const caption = card.querySelector("figcaption");
-    if (lightboxImage && sourceImage) {
-      lightboxImage.src = sourceImage.currentSrc || sourceImage.src;
-      lightboxImage.alt = sourceImage.alt;
+  const thumbnails = slides.map((slide, index) => {
+    const sourceImage = slide.querySelector("img");
+    const button = document.createElement("button");
+    const image = document.createElement("img");
+    button.className = "field-thumb";
+    button.type = "button";
+    button.setAttribute("aria-label", `Afficher la photo de terrain ${index + 1}`);
+    image.src = sourceImage?.getAttribute("src") || "";
+    image.alt = "";
+    button.append(image);
+    button.addEventListener("click", () => showFieldSlide(index, true));
+    thumbnailsContainer?.append(button);
+    return button;
+  });
+
+  const updateToggle = () => {
+    if (!toggleButton) return;
+    toggleButton.textContent = autoPlay ? "Pause" : "Lecture";
+    toggleButton.setAttribute("aria-label", autoPlay ? "Mettre le diaporama de terrain en pause" : "Relancer le diaporama de terrain");
+  };
+
+  const stopTimer = () => window.clearInterval(timer);
+
+  const startTimer = () => {
+    stopTimer();
+    if (autoPlay && !isInteracting && !document.hidden) {
+      timer = window.setInterval(() => showFieldSlide(currentIndex + 1), 6500);
     }
-    if (lightboxCaption && caption) lightboxCaption.textContent = caption.textContent;
   };
 
-  const openFieldPhoto = (index, button) => {
-    returnFocus = button;
-    showFieldPhoto(index);
-    fieldLightbox.hidden = false;
-    document.body.classList.add("lightbox-open");
-    closeButton?.focus();
-  };
+  function showFieldSlide(nextIndex, restart = false) {
+    currentIndex = (nextIndex + slides.length) % slides.length;
+    slides.forEach((slide, index) => {
+      const isActive = index === currentIndex;
+      slide.classList.toggle("is-active", isActive);
+      slide.hidden = !isActive;
+      slide.setAttribute("aria-hidden", String(!isActive));
+      thumbnails[index]?.classList.toggle("is-active", isActive);
+      thumbnails[index]?.setAttribute("aria-current", isActive ? "true" : "false");
+    });
+    const activeThumbnail = thumbnails[currentIndex];
+    if (thumbnailsContainer && activeThumbnail) {
+      thumbnailsContainer.scrollTo({
+        left: Math.max(0, activeThumbnail.offsetLeft - thumbnailsContainer.clientWidth / 2 + activeThumbnail.clientWidth / 2),
+        behavior: "smooth"
+      });
+    }
+    if (currentLabel) currentLabel.textContent = String(currentIndex + 1);
+    if (restart) startTimer();
+  }
 
-  const closeFieldPhoto = () => {
-    fieldLightbox.hidden = true;
-    document.body.classList.remove("lightbox-open");
-    if (lightboxImage) lightboxImage.src = "";
-    returnFocus?.focus();
-  };
+  previousButton?.addEventListener("click", () => showFieldSlide(currentIndex - 1, true));
+  nextButton?.addEventListener("click", () => showFieldSlide(currentIndex + 1, true));
+  toggleButton?.addEventListener("click", () => {
+    autoPlay = !autoPlay;
+    updateToggle();
+    startTimer();
+  });
 
-  openButtons.forEach((button, index) => {
-    button?.addEventListener("click", () => openFieldPhoto(index, button));
+  track?.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      showFieldSlide(currentIndex - 1, true);
+    }
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      showFieldSlide(currentIndex + 1, true);
+    }
   });
-  closeButton?.addEventListener("click", closeFieldPhoto);
-  previousButton?.addEventListener("click", () => showFieldPhoto(currentIndex - 1));
-  nextButton?.addEventListener("click", () => showFieldPhoto(currentIndex + 1));
-  fieldLightbox.addEventListener("click", (event) => {
-    if (event.target === fieldLightbox) closeFieldPhoto();
+
+  fieldSlider.addEventListener("mouseenter", () => {
+    isInteracting = true;
+    stopTimer();
   });
-  document.addEventListener("keydown", (event) => {
-    if (fieldLightbox.hidden) return;
-    if (event.key === "Escape") closeFieldPhoto();
-    if (event.key === "ArrowLeft") showFieldPhoto(currentIndex - 1);
-    if (event.key === "ArrowRight") showFieldPhoto(currentIndex + 1);
+  fieldSlider.addEventListener("mouseleave", () => {
+    isInteracting = false;
+    startTimer();
   });
+  fieldSlider.addEventListener("focusin", () => {
+    isInteracting = true;
+    stopTimer();
+  });
+  fieldSlider.addEventListener("focusout", (event) => {
+    if (!fieldSlider.contains(event.relatedTarget)) {
+      isInteracting = false;
+      startTimer();
+    }
+  });
+  document.addEventListener("visibilitychange", startTimer);
+  reducedMotion.addEventListener("change", (event) => {
+    autoPlay = !event.matches;
+    updateToggle();
+    startTimer();
+  });
+
+  showFieldSlide(0);
+  updateToggle();
+  startTimer();
 }
 
