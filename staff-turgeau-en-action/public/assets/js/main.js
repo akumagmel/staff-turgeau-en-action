@@ -32,6 +32,14 @@ window.addEventListener("keydown", (event) => {
 
 if (year) year.textContent = new Date().getFullYear();
 
+const shuffleItems = (items) => {
+  for (let index = items.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [items[index], items[randomIndex]] = [items[randomIndex], items[index]];
+  }
+  return items;
+};
+
 const slider = document.querySelector("[data-slider]");
 
 if (slider) {
@@ -45,10 +53,7 @@ if (slider) {
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const slides = [...slider.querySelectorAll("[data-slide]")];
 
-  for (let index = slides.length - 1; index > 0; index -= 1) {
-    const randomIndex = Math.floor(Math.random() * (index + 1));
-    [slides[index], slides[randomIndex]] = [slides[randomIndex], slides[index]];
-  }
+  shuffleItems(slides);
 
   slides.forEach((slide, index) => {
     track?.insertBefore(slide, previousButton);
@@ -150,5 +155,65 @@ if (slider) {
   showSlide(0);
   updateToggle();
   startTimer();
+}
+
+const fieldGallery = document.querySelector("[data-field-gallery]");
+const fieldLightbox = document.querySelector("[data-field-lightbox]");
+
+if (fieldGallery && fieldLightbox) {
+  const cards = shuffleItems([...fieldGallery.querySelectorAll("[data-field-photo]")]);
+  cards.forEach((card) => fieldGallery.append(card));
+
+  const openButtons = cards.map((card) => card.querySelector("[data-field-open]"));
+  const lightboxImage = fieldLightbox.querySelector("[data-field-lightbox-image]");
+  const lightboxCaption = fieldLightbox.querySelector("[data-field-lightbox-caption]");
+  const closeButton = fieldLightbox.querySelector("[data-field-close]");
+  const previousButton = fieldLightbox.querySelector("[data-field-prev]");
+  const nextButton = fieldLightbox.querySelector("[data-field-next]");
+  let currentIndex = 0;
+  let returnFocus;
+
+  const showFieldPhoto = (nextIndex) => {
+    currentIndex = (nextIndex + cards.length) % cards.length;
+    const card = cards[currentIndex];
+    const sourceImage = card.querySelector("img");
+    const caption = card.querySelector("figcaption");
+    if (lightboxImage && sourceImage) {
+      lightboxImage.src = sourceImage.currentSrc || sourceImage.src;
+      lightboxImage.alt = sourceImage.alt;
+    }
+    if (lightboxCaption && caption) lightboxCaption.textContent = caption.textContent;
+  };
+
+  const openFieldPhoto = (index, button) => {
+    returnFocus = button;
+    showFieldPhoto(index);
+    fieldLightbox.hidden = false;
+    document.body.classList.add("lightbox-open");
+    closeButton?.focus();
+  };
+
+  const closeFieldPhoto = () => {
+    fieldLightbox.hidden = true;
+    document.body.classList.remove("lightbox-open");
+    if (lightboxImage) lightboxImage.src = "";
+    returnFocus?.focus();
+  };
+
+  openButtons.forEach((button, index) => {
+    button?.addEventListener("click", () => openFieldPhoto(index, button));
+  });
+  closeButton?.addEventListener("click", closeFieldPhoto);
+  previousButton?.addEventListener("click", () => showFieldPhoto(currentIndex - 1));
+  nextButton?.addEventListener("click", () => showFieldPhoto(currentIndex + 1));
+  fieldLightbox.addEventListener("click", (event) => {
+    if (event.target === fieldLightbox) closeFieldPhoto();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (fieldLightbox.hidden) return;
+    if (event.key === "Escape") closeFieldPhoto();
+    if (event.key === "ArrowLeft") showFieldPhoto(currentIndex - 1);
+    if (event.key === "ArrowRight") showFieldPhoto(currentIndex + 1);
+  });
 }
 
