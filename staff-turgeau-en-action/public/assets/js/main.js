@@ -168,101 +168,147 @@ if (newsSlider) {
   const totalLabel = newsSlider.querySelector("[data-news-total]");
   const dotsContainer = newsSlider.querySelector("[data-news-dots]");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const slides = [...newsSlider.querySelectorAll("[data-news-slide]")];
+  const archive = document.querySelector("[data-news-archive]");
+  const archiveList = document.querySelector("[data-news-archive-list]");
+  const emptyState = document.querySelector("[data-news-empty]");
+  const expirationWindow = 7 * 24 * 60 * 60 * 1000;
+  const now = Date.now();
+  const allSlides = [...newsSlider.querySelectorAll("[data-news-slide]")];
+  const slides = [];
+  const archivedSlides = [];
 
-  if (totalLabel) totalLabel.textContent = String(slides.length);
+  allSlides.forEach((slide) => {
+    const publicationDate = slide.dataset.published;
+    const publishedAt = publicationDate ? Date.parse(`${publicationDate}T00:00:00Z`) : Number.NaN;
+    const isExpired = Number.isFinite(publishedAt) && now - publishedAt >= expirationWindow;
 
-  let currentIndex = 0;
-  let timer;
-  let autoPlay = !reducedMotion.matches;
-  let isInteracting = false;
-
-  const dots = slides.map((_, index) => {
-    const dot = document.createElement("button");
-    dot.className = "news-dot";
-    dot.type = "button";
-    dot.setAttribute("aria-label", `Afficher l’actualité ${index + 1}`);
-    dot.addEventListener("click", () => showNewsSlide(index, true));
-    dotsContainer?.append(dot);
-    return dot;
+    if (isExpired) {
+      archivedSlides.push(slide);
+    } else {
+      slides.push(slide);
+    }
   });
 
-  const updateToggle = () => {
-    if (!toggleButton) return;
-    toggleButton.textContent = autoPlay ? "Pause" : "Lecture";
-    toggleButton.setAttribute("aria-label", autoPlay ? "Mettre les actualités en pause" : "Relancer le diaporama d’actualités");
-  };
-
-  const stopTimer = () => window.clearInterval(timer);
-
-  const startTimer = () => {
-    stopTimer();
-    if (autoPlay && !isInteracting && !document.hidden && slides.length > 1) {
-      timer = window.setInterval(() => showNewsSlide(currentIndex + 1), 8500);
+  archivedSlides.forEach((slide, index) => {
+    slide.classList.remove("is-active");
+    slide.classList.add("is-archived");
+    slide.hidden = false;
+    slide.setAttribute("aria-hidden", "false");
+    slide.setAttribute("aria-label", `Article archivé ${index + 1} sur ${archivedSlides.length}`);
+    slide.removeAttribute("data-news-slide");
+    const meta = slide.querySelector(".weekly-meta");
+    if (meta && !meta.querySelector(".archive-mark")) {
+      const mark = document.createElement("span");
+      mark.className = "archive-mark";
+      mark.textContent = "Archivé";
+      meta.append(mark);
     }
-  };
+    archiveList?.append(slide);
+  });
 
-  function showNewsSlide(nextIndex, restart = false) {
-    currentIndex = (nextIndex + slides.length) % slides.length;
+  if (archive) archive.hidden = archivedSlides.length === 0;
+
+  if (slides.length === 0) {
+    newsSlider.hidden = true;
+    if (emptyState) emptyState.hidden = false;
+  } else {
     slides.forEach((slide, index) => {
-      const isActive = index === currentIndex;
-      slide.classList.toggle("is-active", isActive);
-      slide.hidden = !isActive;
-      slide.setAttribute("aria-hidden", String(!isActive));
-      dots[index]?.classList.toggle("is-active", isActive);
-      dots[index]?.setAttribute("aria-current", isActive ? "true" : "false");
+      slide.setAttribute("aria-label", `${index + 1} sur ${slides.length}`);
     });
-    if (currentLabel) currentLabel.textContent = String(currentIndex + 1);
-    if (restart) startTimer();
-  }
+    if (totalLabel) totalLabel.textContent = String(slides.length);
 
-  previousButton?.addEventListener("click", () => showNewsSlide(currentIndex - 1, true));
-  nextButton?.addEventListener("click", () => showNewsSlide(currentIndex + 1, true));
-  toggleButton?.addEventListener("click", () => {
-    autoPlay = !autoPlay;
-    updateToggle();
-    startTimer();
-  });
+    let currentIndex = 0;
+    let timer;
+    let autoPlay = !reducedMotion.matches;
+    let isInteracting = false;
 
-  track?.addEventListener("keydown", (event) => {
-    if (event.key === "ArrowLeft") {
-      event.preventDefault();
-      showNewsSlide(currentIndex - 1, true);
+    const dots = slides.map((_, index) => {
+      const dot = document.createElement("button");
+      dot.className = "news-dot";
+      dot.type = "button";
+      dot.setAttribute("aria-label", `Afficher l’actualité ${index + 1}`);
+      dot.addEventListener("click", () => showNewsSlide(index, true));
+      dotsContainer?.append(dot);
+      return dot;
+    });
+
+    const updateToggle = () => {
+      if (!toggleButton) return;
+      toggleButton.textContent = autoPlay ? "Pause" : "Lecture";
+      toggleButton.setAttribute("aria-label", autoPlay ? "Mettre les actualités en pause" : "Relancer le diaporama d’actualités");
+    };
+
+    const stopTimer = () => window.clearInterval(timer);
+
+    const startTimer = () => {
+      stopTimer();
+      if (autoPlay && !isInteracting && !document.hidden && slides.length > 1) {
+        timer = window.setInterval(() => showNewsSlide(currentIndex + 1), 8500);
+      }
+    };
+
+    function showNewsSlide(nextIndex, restart = false) {
+      currentIndex = (nextIndex + slides.length) % slides.length;
+      slides.forEach((slide, index) => {
+        const isActive = index === currentIndex;
+        slide.classList.toggle("is-active", isActive);
+        slide.hidden = !isActive;
+        slide.setAttribute("aria-hidden", String(!isActive));
+        dots[index]?.classList.toggle("is-active", isActive);
+        dots[index]?.setAttribute("aria-current", isActive ? "true" : "false");
+      });
+      if (currentLabel) currentLabel.textContent = String(currentIndex + 1);
+      if (restart) startTimer();
     }
-    if (event.key === "ArrowRight") {
-      event.preventDefault();
-      showNewsSlide(currentIndex + 1, true);
-    }
-  });
 
-  newsSlider.addEventListener("mouseenter", () => {
-    isInteracting = true;
-    stopTimer();
-  });
-  newsSlider.addEventListener("mouseleave", () => {
-    isInteracting = false;
-    startTimer();
-  });
-  newsSlider.addEventListener("focusin", () => {
-    isInteracting = true;
-    stopTimer();
-  });
-  newsSlider.addEventListener("focusout", (event) => {
-    if (!newsSlider.contains(event.relatedTarget)) {
+    previousButton?.addEventListener("click", () => showNewsSlide(currentIndex - 1, true));
+    nextButton?.addEventListener("click", () => showNewsSlide(currentIndex + 1, true));
+    toggleButton?.addEventListener("click", () => {
+      autoPlay = !autoPlay;
+      updateToggle();
+      startTimer();
+    });
+
+    track?.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        showNewsSlide(currentIndex - 1, true);
+      }
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        showNewsSlide(currentIndex + 1, true);
+      }
+    });
+
+    newsSlider.addEventListener("mouseenter", () => {
+      isInteracting = true;
+      stopTimer();
+    });
+    newsSlider.addEventListener("mouseleave", () => {
       isInteracting = false;
       startTimer();
-    }
-  });
-  document.addEventListener("visibilitychange", startTimer);
-  reducedMotion.addEventListener("change", (event) => {
-    autoPlay = !event.matches;
+    });
+    newsSlider.addEventListener("focusin", () => {
+      isInteracting = true;
+      stopTimer();
+    });
+    newsSlider.addEventListener("focusout", (event) => {
+      if (!newsSlider.contains(event.relatedTarget)) {
+        isInteracting = false;
+        startTimer();
+      }
+    });
+    document.addEventListener("visibilitychange", startTimer);
+    reducedMotion.addEventListener("change", (event) => {
+      autoPlay = !event.matches;
+      updateToggle();
+      startTimer();
+    });
+
+    showNewsSlide(0);
     updateToggle();
     startTimer();
-  });
-
-  showNewsSlide(0);
-  updateToggle();
-  startTimer();
+  }
 }
 
 const fieldSlider = document.querySelector("[data-field-slider]");

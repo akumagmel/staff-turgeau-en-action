@@ -13,7 +13,7 @@
   <meta property="og:image" content="https://staffturgeau.org/assets/images/turgeau-action.webp">
   <link rel="canonical" href="https://staffturgeau.org/">
   <link rel="icon" href="/assets/images/logo-staff-turgeau.webp">
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20261018-3">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20261018-4">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -384,12 +384,12 @@
             <p class="eyebrow">Information vérifiée</p>
             <h2 id="weekly-title">Le Point de la Semaine</h2>
           </div>
-          <p>Une sélection d’informations confirmées concernant Haïti, Turgeau et les communautés voisines. STA distingue les faits établis des informations encore en cours de vérification.</p>
+          <p>Une sélection d’informations confirmées concernant Haïti, Turgeau et les communautés voisines. Chaque article reste actif pendant sept jours, puis rejoint automatiquement les archives publiques.</p>
         </div>
 
         <div class="news-showcase" data-news-slider aria-roledescription="carrousel" aria-label="Informations vérifiées de Staff Turgeau en Action">
           <div class="news-stage" data-news-track tabindex="0" aria-label="Diaporama d’actualités. Utilisez les flèches gauche et droite pour parcourir les articles.">
-            <article class="news-slide is-active" data-news-slide aria-roledescription="diapositive" aria-label="1 sur 3" aria-hidden="false" aria-labelledby="news-ice-communautes-title">
+            <article class="news-slide is-active" data-news-slide data-published="2026-10-18" aria-roledescription="diapositive" aria-label="1 sur 3" aria-hidden="false" aria-labelledby="news-ice-communautes-title">
               <figure class="news-slide-visual">
                 <img src="/assets/images/actualites/ice-communautes-haitiennes-latinos-2026.webp" alt="Illustration éditoriale de responsables religieux et communautaires haïtiens et latinos devant une église, avec des véhicules fédéraux à distance" width="1672" height="941" loading="lazy">
                 <figcaption>Illustration éditoriale conceptuelle — elle ne représente pas une arrestation ni une opération précise.</figcaption>
@@ -416,7 +416,7 @@
               </div>
             </article>
 
-            <article class="news-slide" data-news-slide aria-roledescription="diapositive" aria-label="2 sur 3" aria-hidden="true" hidden aria-labelledby="news-france-crise-title">
+            <article class="news-slide" data-news-slide data-published="2026-10-18" aria-roledescription="diapositive" aria-label="2 sur 3" aria-hidden="true" hidden aria-labelledby="news-france-crise-title">
               <figure class="news-slide-visual">
                 <img src="/assets/images/actualites/france-sous-pression-2026.webp" alt="Illustration éditoriale montrant une foule à Paris, des drapeaux français et une courbe financière descendante" width="1672" height="941" loading="lazy">
                 <figcaption>Illustration éditoriale conceptuelle — elle ne représente pas une manifestation précise.</figcaption>
@@ -443,7 +443,7 @@
               </div>
             </article>
 
-            <article class="news-slide" data-news-slide aria-roledescription="diapositive" aria-label="3 sur 3" aria-hidden="true" hidden aria-labelledby="news-un-sanctions-title">
+            <article class="news-slide" data-news-slide data-published="2026-10-14" aria-roledescription="diapositive" aria-label="3 sur 3" aria-hidden="true" hidden aria-labelledby="news-un-sanctions-title">
               <figure class="news-slide-visual">
                 <img src="/assets/images/actualites/conseil-securite-onu-illustration.webp" alt="Illustration du Conseil de sécurité des Nations Unies réuni dans sa salle à New York" width="1600" height="795" loading="lazy">
                 <figcaption>Illustration éditoriale — elle ne représente pas la séance précise du 14 octobre 2026.</figcaption>
@@ -479,6 +479,19 @@
             <div class="news-dots" data-news-dots aria-label="Choisir une actualité"></div>
             <button class="news-toggle" type="button" data-news-toggle aria-label="Mettre les actualités en pause">Pause</button>
           </div>
+        </div>
+
+        <p class="news-empty" data-news-empty hidden>Aucune nouvelle publication n’est actuellement dans sa période active de sept jours. Consultez les archives ci-dessous.</p>
+
+        <div class="news-archive" data-news-archive hidden aria-labelledby="news-archive-title">
+          <div class="news-archive-head">
+            <div>
+              <p class="eyebrow">Mémoire publique</p>
+              <h3 id="news-archive-title">Archives des actualités</h3>
+            </div>
+            <p>Les informations quittent automatiquement le diaporama après sept jours, mais demeurent accessibles avec leurs sources.</p>
+          </div>
+          <div class="news-archive-list" data-news-archive-list></div>
         </div>
       </div>
     </section>
@@ -648,7 +661,7 @@
     </div>
   </footer>
 
-  <script src="/assets/js/main.js?v=20261018-8" defer></script>
+  <script src="/assets/js/main.js?v=20261018-9" defer></script>
 </body>
 </html>
 
