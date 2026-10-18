@@ -179,7 +179,7 @@ if (newsSlider) {
 
   allSlides.forEach((slide) => {
     const publicationDate = slide.dataset.published;
-    const publishedAt = publicationDate ? Date.parse(`${publicationDate}T00:00:00Z`) : Number.NaN;
+    const publishedAt = publicationDate ? Date.parse(`${publicationDate}T00:00:00`) : Number.NaN;
     const isExpired = Number.isFinite(publishedAt) && now - publishedAt >= expirationWindow;
 
     if (isExpired) {
