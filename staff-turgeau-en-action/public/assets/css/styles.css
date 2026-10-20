@@ -239,19 +239,19 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .news-slide.is-archived .news-slide-lede { font-size: 1.05rem; }
 
 .video-reports { color: #fff; background: #061633; }
-.video-reports .section-head h2 { max-width: 760px; }
+.video-reports .section-head h2 { max-width: 700px; font-size: clamp(2.35rem, 4vw, 4.25rem); }
 .video-reports .section-head > p { color: rgba(255,255,255,.67); }
-.video-report-card { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(360px, .85fr); overflow: hidden; border: 1px solid rgba(255,255,255,.13); border-radius: 28px; background: #091d42; box-shadow: 0 28px 80px rgba(0,0,0,.22); }
-.video-report-media { position: relative; min-height: 530px; display: grid; place-items: center; overflow: hidden; background: #020817; }
-.video-report-media video { width: 100%; height: 100%; min-height: 530px; display: block; object-fit: cover; background: #020817; }
+.video-report-card { width: min(1040px, 100%); margin-inline: auto; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(330px, .8fr); overflow: hidden; border: 1px solid rgba(255,255,255,.13); border-radius: 24px; background: #091d42; box-shadow: 0 24px 64px rgba(0,0,0,.2); }
+.video-report-media { position: relative; min-height: 400px; display: grid; place-items: center; overflow: hidden; background: #020817; }
+.video-report-media video { width: 100%; height: 100%; min-height: 400px; display: block; object-fit: contain; background: #020817; }
 .video-duration { position: absolute; right: 18px; top: 18px; padding: 7px 10px; color: #fff; border: 1px solid rgba(255,255,255,.28); border-radius: 999px; background: rgba(3,16,43,.82); backdrop-filter: blur(8px); font-size: .7rem; font-weight: 850; letter-spacing: .08em; pointer-events: none; }
-.video-report-story { display: flex; flex-direction: column; justify-content: center; padding: clamp(38px, 5vw, 68px); }
+.video-report-story { display: flex; flex-direction: column; justify-content: center; padding: clamp(30px, 4vw, 46px); }
 .video-report-meta { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 24px; color: #a9c4ff; font-size: .69rem; font-weight: 850; letter-spacing: .09em; text-transform: uppercase; }
 .video-report-meta > *:not(:last-child) { padding-right: 10px; border-right: 1px solid rgba(255,255,255,.2); }
-.video-report-story h3 { margin: 0; font-family: var(--serif); font-size: clamp(2.4rem, 4vw, 4.6rem); font-weight: 500; letter-spacing: -.045em; line-height: .95; }
-.video-report-story > p:not(.weekly-kicker) { margin: 24px 0 0; color: rgba(255,255,255,.72); }
-.video-report-story blockquote { margin: 28px 0 0; padding: 18px 0 18px 20px; color: rgba(255,255,255,.84); border-left: 3px solid var(--red); font-family: var(--serif); font-size: 1.05rem; line-height: 1.55; }
-.video-summary { margin-top: 28px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.14); }
+.video-report-story h3 { margin: 0; font-family: var(--serif); font-size: clamp(1.85rem, 3vw, 3rem); font-weight: 500; letter-spacing: -.035em; line-height: 1.02; }
+.video-report-story > p:not(.weekly-kicker) { margin: 18px 0 0; color: rgba(255,255,255,.72); font-size: .92rem; }
+.video-report-story blockquote { margin: 20px 0 0; padding: 14px 0 14px 18px; color: rgba(255,255,255,.84); border-left: 3px solid var(--red); font-family: var(--serif); font-size: .96rem; line-height: 1.5; }
+.video-summary { margin-top: 20px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.14); }
 .video-summary summary { width: fit-content; color: #fff; font-size: .78rem; font-weight: 850; cursor: pointer; }
 .video-summary p { margin: 14px 0 0; color: rgba(255,255,255,.66); font-size: .82rem; line-height: 1.65; }
 .video-reports-note { max-width: 720px; margin: 24px 0 0; color: rgba(255,255,255,.52); font-size: .72rem; }
@@ -530,8 +530,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .news-slide.is-archived .news-slide-visual, .news-slide.is-archived .news-slide-visual img { min-height: 260px; }
   .news-slide.is-archived .news-slide-story { min-height: 0; padding: 32px 20px 36px; }
   .video-report-card { border-radius: 18px; }
-  .video-report-story { padding: 38px 24px 42px; }
-  .video-report-story h3 { font-size: clamp(2.35rem, 11vw, 3.6rem); }
+  .video-report-story { padding: 30px 22px 34px; }
+  .video-report-story h3 { font-size: clamp(1.85rem, 8.5vw, 2.65rem); }
   .field-showcase { border-radius: 18px; }
   .field-stage, .field-slide { min-height: 0; }
   .field-slide { grid-template-columns: 1fr; grid-template-rows: clamp(420px, 112vw, 560px) auto; }
