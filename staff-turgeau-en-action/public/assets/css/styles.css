@@ -342,7 +342,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .featured-tier .tier-kicker { color: #b7ccff; }
 .tier-card h3 { margin: 0; font-family: var(--serif); font-size: 2rem; }
 .tier-price { display: flex; gap: 8px; align-items: baseline; margin: 20px 0 26px; }
-.tier-price strong { font-family: var(--serif); font-size: 2.5rem; font-weight: 500; }
+.tier-price strong { font-family: var(--serif); font-size: clamp(1.85rem, 2.6vw, 2.5rem); font-weight: 500; line-height: 1.05; }
 .tier-price span { color: #7a8496; font-size: .8rem; }
 .featured-tier .tier-price span, .featured-tier > p:not(.tier-kicker, .tier-price) { color: rgba(255,255,255,.74); }
 .tier-card > p:not(.tier-kicker, .tier-price) { color: #5f6b7e; line-height: 1.7; }
