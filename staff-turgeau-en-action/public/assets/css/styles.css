@@ -326,6 +326,56 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .subpage-footer { padding: 28px 0; color: rgba(255,255,255,.65); background: var(--navy); font-size: .78rem; }
 .subpage-footer .container { display: flex; justify-content: space-between; gap: 20px; }
 
+.membership-shell { max-width: 1180px; }
+.membership-hero { display: grid; grid-template-columns: 1.25fr .75fr; gap: clamp(42px, 8vw, 110px); align-items: end; padding: clamp(48px, 7vw, 86px); color: #fff; border-radius: 28px; background: linear-gradient(135deg, #061634 0%, #0d347f 72%, #174fb8 100%); box-shadow: var(--shadow); }
+.membership-hero h1 { margin: 0; font-family: var(--serif); font-size: clamp(3.8rem, 8vw, 7.4rem); font-weight: 500; letter-spacing: -.06em; line-height: .84; }
+.membership-hero h1 em { color: #ff7890; font-weight: 500; }
+.membership-hero-copy p { margin: 0 0 28px; color: rgba(255,255,255,.8); font-size: 1.05rem; line-height: 1.75; }
+.membership-section-heading { display: grid; grid-template-columns: 1.25fr .75fr; gap: 70px; align-items: end; margin-bottom: 44px; }
+.membership-section-heading h2, .membership-intake h2, .membership-rules h2 { margin: 0; font-family: var(--serif); font-size: clamp(2.45rem, 5vw, 4.6rem); font-weight: 500; letter-spacing: -.045em; line-height: .98; }
+.membership-section-heading > p { margin: 0; color: #5f6b7e; }
+.membership-tiers { padding: 100px 0; }
+.tier-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.tier-card { min-height: 470px; display: flex; flex-direction: column; padding: 34px; border: 1px solid var(--line); border-radius: 20px; background: #fff; box-shadow: 0 12px 34px rgba(5,17,42,.06); }
+.tier-card.featured-tier { color: #fff; border-color: transparent; background: var(--blue); transform: translateY(-14px); box-shadow: 0 22px 54px rgba(13,71,161,.24); }
+.tier-kicker { margin: 0 0 34px; color: var(--red); font-size: .7rem; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; }
+.featured-tier .tier-kicker { color: #b7ccff; }
+.tier-card h3 { margin: 0; font-family: var(--serif); font-size: 2rem; }
+.tier-price { display: flex; gap: 8px; align-items: baseline; margin: 20px 0 26px; }
+.tier-price strong { font-family: var(--serif); font-size: 2.5rem; font-weight: 500; }
+.tier-price span { color: #7a8496; font-size: .8rem; }
+.featured-tier .tier-price span, .featured-tier > p:not(.tier-kicker, .tier-price) { color: rgba(255,255,255,.74); }
+.tier-card > p:not(.tier-kicker, .tier-price) { color: #5f6b7e; line-height: 1.7; }
+.tier-card > a { width: fit-content; margin-top: auto; padding-top: 28px; color: var(--blue); font-weight: 850; text-decoration: none; }
+.featured-tier > a { color: #fff; }
+.membership-governance-note { margin: 30px 0 0; padding: 18px 22px; color: #5f6b7e; border-left: 3px solid var(--red); background: rgba(216,38,63,.035); font-size: .82rem; line-height: 1.7; }
+.membership-governance-note strong { color: var(--ink); }
+.membership-intake { display: grid; grid-template-columns: .72fr 1.28fr; gap: clamp(40px, 8vw, 100px); padding: clamp(44px, 7vw, 78px); color: #fff; border-radius: 28px; background: var(--navy); }
+.intake-copy > p:not(.eyebrow) { color: rgba(255,255,255,.72); }
+.intake-steps { display: grid; gap: 12px; margin: 34px 0; }
+.intake-steps span { display: flex; gap: 12px; align-items: center; color: rgba(255,255,255,.8); font-size: .82rem; font-weight: 750; }
+.intake-steps b { display: grid; place-items: center; width: 30px; height: 30px; color: #fff; background: var(--red); border-radius: 50%; font-family: var(--serif); }
+.intake-security { padding: 18px; border: 1px solid rgba(255,255,255,.16); border-radius: 12px; color: rgba(255,255,255,.65); font-size: .78rem; line-height: 1.65; }
+.intake-security strong { color: #fff; }
+.membership-form { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 16px; padding: 34px; color: var(--ink); border-radius: 18px; background: #fff; }
+.form-field { display: grid; align-content: start; gap: 8px; }
+.form-field-full { grid-column: 1 / -1; }
+.form-field label { font-size: .76rem; font-weight: 850; }
+.form-field label small { color: #7a8496; font-weight: 600; }
+.form-field input, .form-field select, .form-field textarea { width: 100%; min-height: 50px; padding: 12px 14px; color: var(--ink); border: 1px solid rgba(8,22,47,.2); border-radius: 9px; background: #fff; font: inherit; font-size: .9rem; }
+.form-field textarea { min-height: 142px; resize: vertical; }
+.form-field input:focus, .form-field select:focus, .form-field textarea:focus { outline: 3px solid rgba(23,79,184,.18); border-color: var(--royal); }
+.form-field > small { color: #7a8496; font-size: .68rem; line-height: 1.5; }
+.form-consent { display: grid; grid-template-columns: 20px 1fr; gap: 12px; color: #526079; font-size: .76rem; line-height: 1.6; }
+.form-consent input { width: 18px; height: 18px; margin-top: 3px; accent-color: var(--blue); }
+.form-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; }
+.form-actions a { color: var(--blue); font-size: .82rem; font-weight: 850; }
+.form-explainer { margin: 0; color: #7a8496; font-size: .7rem; line-height: 1.55; }
+.form-status { min-height: 1.3em; margin: 0; color: var(--blue); font-size: .76rem; font-weight: 750; }
+.membership-rules { display: grid; grid-template-columns: .8fr 1.2fr; gap: 80px; padding: 100px 0 40px; }
+.membership-rules .policy-list { margin-top: 0; }
+.membership-final-note { margin-bottom: 0; }
+
 .site-footer { padding: 76px 0 28px; color: rgba(255,255,255,.72); background: #03102b; }
 .footer-grid { display: grid; grid-template-columns: 1.5fr .85fr .85fr .75fr 1.1fr; gap: 34px; }
 .footer-brand { display: flex; gap: 18px; align-items: center; }
@@ -371,6 +421,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .news-slide-sources > div { justify-content: flex-start; }
   .field-next { right: 366px; }
   .footer-grid { grid-template-columns: repeat(2, 1fr); }
+  .membership-hero, .membership-section-heading, .membership-intake, .membership-rules { grid-template-columns: 1fr; }
+  .membership-hero { align-items: start; }
+  .membership-intake, .membership-rules { gap: 48px; }
 }
 @media (max-width: 720px) {
   .container { width: min(100% - 28px, 1180px); }
@@ -406,6 +459,15 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .policy-card section { padding: 34px 0; }
   .policy-steps { grid-template-columns: 1fr; }
   .subpage-footer .container { flex-direction: column; }
+  .membership-hero { padding: 42px 24px; border-radius: 20px; }
+  .membership-hero h1 { font-size: clamp(3.5rem, 17vw, 5rem); }
+  .membership-tiers { padding: 72px 0; }
+  .tier-grid { grid-template-columns: 1fr; }
+  .tier-card, .tier-card.featured-tier { min-height: 0; transform: none; }
+  .membership-intake { padding: 38px 20px; border-radius: 20px; }
+  .membership-form { grid-template-columns: 1fr; padding: 24px 18px; }
+  .form-field, .form-field-full { grid-column: 1; }
+  .membership-rules { padding-top: 72px; }
   .capacity-panel { padding: 34px 24px; }
   .limits > div { grid-template-columns: 1fr; }
   .limits summary span { display: none; }
