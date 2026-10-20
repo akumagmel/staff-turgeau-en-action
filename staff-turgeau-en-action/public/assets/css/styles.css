@@ -610,3 +610,90 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .un-section h2 { font-size: clamp(1.95rem, 8vw, 2.7rem); }
   .un-grid > div:last-child p:not(.eyebrow) { font-size: .92rem; line-height: 1.5; margin-block: 10px; }
 }
+
+
+/* Compact Article 31 and join card while preserving all copy. */
+.authority-grid .constitutional-authority {
+  grid-template-columns: 170px minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 52px);
+  padding: clamp(28px, 4.5vw, 52px);
+}
+.constitutional-badge { padding-right: 22px; }
+.constitutional-badge .authority-icon {
+  width: 68px;
+  height: 68px;
+  margin-bottom: 16px;
+  font-size: 1.9rem;
+}
+.authority-grid .constitutional-copy h3 {
+  margin-bottom: 16px;
+  font-size: clamp(1.8rem, 3.4vw, 3.2rem);
+  line-height: 1.04;
+}
+.authority-grid .constitutional-copy > p {
+  margin-block: 10px;
+  font-size: .94rem;
+  line-height: 1.55;
+}
+.constitutional-copy blockquote {
+  margin: 18px 0;
+  padding: 16px 20px;
+  font-size: clamp(1.02rem, 1.6vw, 1.32rem);
+  line-height: 1.45;
+}
+.authority-grid .constitutional-copy .constitutional-callout {
+  margin: 18px 0 0;
+  padding-top: 18px;
+}
+.authority-grid .constitutional-copy .constitutional-conclusion { margin: 12px 0 0; }
+
+.join-card {
+  min-height: 0;
+  max-width: 1100px;
+  margin-inline: auto;
+  gap: clamp(28px, 5vw, 56px);
+  padding: clamp(34px, 5vw, 60px);
+  border-radius: 24px;
+}
+.join h2 { font-size: clamp(2.55rem, 4.6vw, 4.8rem); }
+.join-card > div:first-child > p:not(.eyebrow) {
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 980px) {
+  .authority-grid .constitutional-authority {
+    grid-template-columns: 140px minmax(0, 1fr);
+    gap: 24px;
+    padding: 30px;
+  }
+  .join-card { gap: 26px; padding: 36px; }
+}
+
+@media (max-width: 720px) {
+  .authority-grid .constitutional-authority {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 24px 20px;
+  }
+  .constitutional-badge { gap: 16px; padding: 0 0 18px; }
+  .constitutional-badge .authority-icon {
+    width: 54px;
+    height: 54px;
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  .authority-grid .constitutional-copy h3 {
+    margin-bottom: 12px;
+    font-size: clamp(1.75rem, 8vw, 2.5rem);
+  }
+  .constitutional-copy blockquote { margin: 14px 0; padding: 14px 16px; }
+  .join-card {
+    width: auto;
+    margin-inline: 14px;
+    gap: 18px;
+    padding: 28px 22px;
+    border-radius: 20px;
+  }
+  .join h2 { font-size: clamp(2.35rem, 10.5vw, 3.7rem); }
+}
