@@ -53,7 +53,7 @@ if (slider) {
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const slides = [...slider.querySelectorAll("[data-slide]")];
 
-  shuffleItems(slides);
+  // Keep the approved editorial order, with the marketplace launch first.
 
   slides.forEach((slide, index) => {
     track?.insertBefore(slide, previousButton);
