@@ -434,11 +434,11 @@ if (videoSlideshow) {
     const title = document.createElement("span");
     title.textContent = slide.querySelector("h3").textContent;
     button.append(image, title);
-    button.addEventListener("click", () => showVideoSlide(index));
+    button.addEventListener("click", () => showVideoSlide(index, true));
     thumbnails.append(button);
     return button;
   });
-  function showVideoSlide(index) {
+  function showVideoSlide(index, playSelected = false) {
     current = (index + slides.length) % slides.length;
     slides.forEach((slide, i) => {
       const active = i === current;
@@ -449,14 +449,24 @@ if (videoSlideshow) {
       buttons[i].setAttribute("aria-current", String(active));
     });
     label.textContent = String(current + 1);
+    if (playSelected) {
+      const video = slides[current].querySelector("video");
+      if (video) {
+        if (video.ended) video.currentTime = 0;
+        const playback = video.play();
+        playback?.catch(() => {
+          // Native controls remain available if the browser blocks playback.
+        });
+      }
+    }
   }
-  videoSlideshow.querySelector("[data-video-prev]").addEventListener("click", () => showVideoSlide(current - 1));
-  videoSlideshow.querySelector("[data-video-next]").addEventListener("click", () => showVideoSlide(current + 1));
+  videoSlideshow.querySelector("[data-video-prev]").addEventListener("click", () => showVideoSlide(current - 1, true));
+  videoSlideshow.querySelector("[data-video-next]").addEventListener("click", () => showVideoSlide(current + 1, true));
   videoSlideshow.querySelector("[data-video-track]").addEventListener("keydown", (event) => {
     if (event.target !== event.currentTarget) return;
     if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
       event.preventDefault();
-      showVideoSlide(current + (event.key === "ArrowLeft" ? -1 : 1));
+      showVideoSlide(current + (event.key === "ArrowLeft" ? -1 : 1), true);
     }
   });
   showVideoSlide(0);
