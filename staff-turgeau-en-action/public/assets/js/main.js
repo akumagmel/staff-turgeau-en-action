@@ -168,14 +168,11 @@ if (newsSlider) {
   const totalLabel = newsSlider.querySelector("[data-news-total]");
   const dotsContainer = newsSlider.querySelector("[data-news-dots]");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const archive = document.querySelector("[data-news-archive]");
-  const archiveList = document.querySelector("[data-news-archive-list]");
   const emptyState = document.querySelector("[data-news-empty]");
   const expirationWindow = 7 * 24 * 60 * 60 * 1000;
   const now = Date.now();
   const allSlides = [...newsSlider.querySelectorAll("[data-news-slide]")];
   const slides = [];
-  const archivedSlides = [];
 
   allSlides.forEach((slide) => {
     const publicationDate = slide.dataset.published;
@@ -183,30 +180,12 @@ if (newsSlider) {
     const isExpired = Number.isFinite(publishedAt) && now - publishedAt >= expirationWindow;
 
     if (isExpired) {
-      archivedSlides.push(slide);
+      slide.remove();
     } else {
       slides.push(slide);
     }
   });
 
-  archivedSlides.forEach((slide, index) => {
-    slide.classList.remove("is-active");
-    slide.classList.add("is-archived");
-    slide.hidden = false;
-    slide.setAttribute("aria-hidden", "false");
-    slide.setAttribute("aria-label", `Article archivé ${index + 1} sur ${archivedSlides.length}`);
-    slide.removeAttribute("data-news-slide");
-    const meta = slide.querySelector(".weekly-meta");
-    if (meta && !meta.querySelector(".archive-mark")) {
-      const mark = document.createElement("span");
-      mark.className = "archive-mark";
-      mark.textContent = "Archivé";
-      meta.append(mark);
-    }
-    archiveList?.append(slide);
-  });
-
-  if (archive) archive.hidden = archivedSlides.length === 0;
 
   if (slides.length === 0) {
     newsSlider.hidden = true;
