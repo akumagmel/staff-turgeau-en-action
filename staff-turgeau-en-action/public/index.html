@@ -13,7 +13,7 @@
   <meta property="og:image" content="https://staffturgeau.org/assets/images/turgeau-action.webp">
   <link rel="canonical" href="https://staffturgeau.org/">
   <link rel="icon" href="/assets/images/logo-staff-turgeau.webp">
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20261023-shop">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20261024-video-slides">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -699,7 +699,9 @@
           <p>Des échanges directs, témoignages et observations recueillis par Staff Turgeau en Action auprès de la communauté.</p>
         </div>
 
-        <article class="video-report-card">
+        <div class="video-slideshow" data-video-slider aria-roledescription="carrousel" aria-label="Vidéos et reportages STA">
+        <div data-video-track tabindex="0" aria-label="Utilisez les flèches gauche et droite pour changer de vidéo.">
+        <article class="video-report-card is-active" data-video-slide aria-label="1 sur 3" aria-hidden="false">
           <div class="video-report-media">
             <video controls playsinline preload="metadata" poster="/assets/images/videos/sta-commercants-inflation-haiti-poster.jpg" aria-label="Reportage de Staff Turgeau en Action auprès d’un commerçant sur la situation économique et l’inflation en Haïti">
               <source src="/assets/videos/STA.Video-H264-AAC.mp4" type="video/mp4">
@@ -720,7 +722,7 @@
           </div>
         </article>
 
-        <article class="video-report-card" style="margin-top:28px">
+        <article class="video-report-card" data-video-slide aria-label="2 sur 3" aria-hidden="true" hidden>
           <div class="video-report-media">
             <video controls playsinline preload="metadata" poster="/assets/images/videos/sta-reunion-poster.jpg" aria-label="Échanges et coordination de l’équipe STA." style="max-height:540px">
               <source src="/assets/videos/STA-Video-20261021-Web.mp4" type="video/mp4">
@@ -738,7 +740,7 @@
           </div>
         </article>
 
-        <article class="video-report-card" style="margin-top:28px">
+        <article class="video-report-card" data-video-slide aria-label="3 sur 3" aria-hidden="true" hidden>
           <div class="video-report-media">
             <video controls playsinline preload="metadata" poster="/assets/images/videos/sta-visite-poster.jpg" aria-label="STA en visite de terrain." style="max-height:540px">
               <source src="/assets/videos/STA-Screen-Recording-20261024-Web.mp4" type="video/mp4">
@@ -755,6 +757,15 @@
             <p><a href="/assets/videos/STA-Screen-Recording-20261024-Web.mp4" target="_blank" rel="noopener">Ouvrir la vidéo directement ↗</a></p>
           </div>
         </article>
+
+</div>
+        <div class="video-slide-toolbar">
+          <button class="button button-ghost" type="button" data-video-prev aria-label="Vidéo précédente">‹ Précédente</button>
+          <p aria-live="polite"><span data-video-current>1</span> / 3</p>
+          <button class="button button-ghost" type="button" data-video-next aria-label="Vidéo suivante">Suivante ›</button>
+        </div>
+        <div class="video-slide-thumbs" data-video-thumbs aria-label="Choisir une vidéo"></div>
+        </div>
 
         <p class="video-reports-note">Les vidéos ne démarrent jamais automatiquement. Appuyez sur lecture pour préserver vos données mobiles et entendre le reportage.</p>
       </div>
@@ -934,7 +945,7 @@
     </div>
   </footer>
 
-  <script src="/assets/js/main.js?v=20261024-expiration" defer></script>
+  <script src="/assets/js/main.js?v=20261024-video-slides" defer></script>
 </body>
 </html>
 

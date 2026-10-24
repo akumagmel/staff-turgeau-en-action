@@ -415,3 +415,49 @@ if (fieldSlider) {
   startTimer();
 }
 
+
+const videoSlideshow = document.querySelector("[data-video-slider]");
+if (videoSlideshow) {
+  const slides = [...videoSlideshow.querySelectorAll("[data-video-slide]")];
+  const thumbnails = videoSlideshow.querySelector("[data-video-thumbs]");
+  const label = videoSlideshow.querySelector("[data-video-current]");
+  let current = 0;
+  const buttons = slides.map((slide, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "video-slide-thumb";
+    button.setAttribute("aria-label", "Afficher la vidéo " + (index + 1));
+    const image = document.createElement("img");
+    image.src = slide.querySelector("video").poster;
+    image.alt = "";
+    image.loading = "lazy";
+    const title = document.createElement("span");
+    title.textContent = slide.querySelector("h3").textContent;
+    button.append(image, title);
+    button.addEventListener("click", () => showVideoSlide(index));
+    thumbnails.append(button);
+    return button;
+  });
+  function showVideoSlide(index) {
+    current = (index + slides.length) % slides.length;
+    slides.forEach((slide, i) => {
+      const active = i === current;
+      if (!active) slide.querySelector("video")?.pause();
+      slide.hidden = !active;
+      slide.classList.toggle("is-active", active);
+      slide.setAttribute("aria-hidden", String(!active));
+      buttons[i].setAttribute("aria-current", String(active));
+    });
+    label.textContent = String(current + 1);
+  }
+  videoSlideshow.querySelector("[data-video-prev]").addEventListener("click", () => showVideoSlide(current - 1));
+  videoSlideshow.querySelector("[data-video-next]").addEventListener("click", () => showVideoSlide(current + 1));
+  videoSlideshow.querySelector("[data-video-track]").addEventListener("keydown", (event) => {
+    if (event.target !== event.currentTarget) return;
+    if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+      event.preventDefault();
+      showVideoSlide(current + (event.key === "ArrowLeft" ? -1 : 1));
+    }
+  });
+  showVideoSlide(0);
+}
