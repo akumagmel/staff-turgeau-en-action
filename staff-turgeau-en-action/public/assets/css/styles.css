@@ -727,7 +727,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .sta-partners .section-head h2 { font-size:clamp(1.89rem,3.5vw,3.71rem); }
 .sta-partners .eyebrow { font-size:.65rem; }
 .partners-intro { max-width:630px; margin:0 0 21px; color:#536078; line-height:1.7; }
-.sta-partner-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+.sta-partner-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
 .sta-partner-card { padding:20px; border:1px solid #dde3ed; border-radius:15px; background:#fff; text-align:center; }
 .sta-partner-visual { min-height:168px; display:flex; align-items:center; justify-content:center; margin-bottom:17px; }
 .sta-partner-visual img { display:block; width:154px; max-width:100%; height:154px; object-fit:contain; }
