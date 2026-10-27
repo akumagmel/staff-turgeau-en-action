@@ -27,5 +27,5 @@ membershipForm?.addEventListener("submit", (event) => {
   ].join("\n");
 
   if (formStatus) formStatus.textContent = "Votre application de courriel va s’ouvrir. Relisez la demande avant de l’envoyer.";
-  window.location.href = `mailto:Staffturgeau@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.location.href = `mailto:staffturgeau@pm.me?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 });
