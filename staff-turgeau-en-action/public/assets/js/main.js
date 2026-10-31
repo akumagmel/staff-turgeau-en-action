@@ -169,23 +169,7 @@ if (newsSlider) {
   const dotsContainer = newsSlider.querySelector("[data-news-dots]");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const emptyState = document.querySelector("[data-news-empty]");
-  const expirationWindow = 7 * 24 * 60 * 60 * 1000;
-  const now = Date.now();
-  const allSlides = [...newsSlider.querySelectorAll("[data-news-slide]")];
-  const slides = [];
-
-  allSlides.forEach((slide) => {
-    const publicationDate = slide.dataset.published;
-    const publishedAt = publicationDate ? Date.parse(`${publicationDate}T00:00:00`) : Number.NaN;
-    const isExpired = Number.isFinite(publishedAt) && now - publishedAt >= expirationWindow;
-
-    if (isExpired) {
-      slide.remove();
-    } else {
-      slides.push(slide);
-    }
-  });
-
+  const slides = [...newsSlider.querySelectorAll("[data-news-slide]")];
 
   if (slides.length === 0) {
     newsSlider.hidden = true;
