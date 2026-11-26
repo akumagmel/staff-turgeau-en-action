@@ -738,16 +738,12 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .partners-closing { text-align:center; color:#071b42; margin:21px 0 0; font-weight:700; }
 @media(max-width:700px) { .sta-partner-grid { grid-template-columns:1fr; } .sta-partners .section-head { grid-template-columns:1fr; gap:20px; } }
 
-/* Show the complete STA mural beside the introduction, without cropping. */
-.hero-media { display: flex; align-items: center; justify-content: flex-end; padding: 100px 4vw 90px; z-index: 1; pointer-events: none; }
-.hero-media img { width: 33.333%; height: auto; max-height: calc(100% - 20px); object-fit: contain; object-position: center; filter: none; }
-.hero-overlay { display: none; }
-.hero-inner h1, .hero-inner .hero-lede, .hero-inner .hero-actions { max-width: 58%; }
+/* Large mural integrated into the hero background. */
+.hero-media { position: absolute; inset: 76px 0 66px; display: block; padding: 0; pointer-events: none; }
+.hero-media img { width: 100%; height: 100%; max-height: none; object-fit: contain; object-position: right center; filter: none; }
+.hero-overlay { display: block; z-index: 1; background: linear-gradient(90deg, rgba(3,15,41,.98) 0%, rgba(3,15,41,.88) 32%, rgba(3,15,41,.42) 56%, rgba(3,15,41,.06) 78%); }
 @media (max-width: 900px) {
-  .hero { height: auto; min-height: 0; display: flex; flex-direction: column; align-items: stretch; padding-top: 110px; }
-  .hero-inner { order: 1; padding-top: 20px; padding-bottom: 24px; }
-  .hero-inner h1, .hero-inner .hero-lede, .hero-inner .hero-actions { max-width: 100%; }
-  .hero-media { position: relative; inset: auto; order: 2; padding: 0 24px 32px; justify-content: center; }
-  .hero-media img { width: min(100%, 280px); max-height: none; height: auto; }
-  .hero-ribbon { position: relative; order: 3; }
+  .hero-media { inset: 76px 0 66px; }
+  .hero-media img { object-fit: contain; object-position: center; }
+  .hero-overlay { background: linear-gradient(90deg, rgba(3,15,41,.78), rgba(3,15,41,.35)), linear-gradient(0deg, rgba(3,15,41,.85), transparent 65%); }
 }
