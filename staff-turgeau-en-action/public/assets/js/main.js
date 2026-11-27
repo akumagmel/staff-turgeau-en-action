@@ -90,7 +90,7 @@ if (slider) {
   const startTimer = () => {
     stopTimer();
     if (autoPlay && !isInteracting && !document.hidden) {
-      timer = window.setInterval(() => showSlide(currentIndex + 1), 6000);
+      timer = window.setInterval(() => showSlide(currentIndex + 1, true), Number(slides[currentIndex]?.dataset.duration) || 6000);
     }
   };
 
